@@ -1,3 +1,18 @@
+# Frontend Document Indexer ML Hispano
+
+This Repository is a implementation slightly modified from this [GraphQL - MongoDB and Node js Tutorial](https://academind.com/learn/node-js/graphql-with-node-react-full-app/).
+
+I actually use some others tutorials.
+
+I hope this project will be used as page-documents of Machine Learning - Data Science - etc-- for Community MLHispano
+
+## Notes
+
+Just stay sure that you have created the Mongo Database in your local machine or this repository does not work.
+
+The Backend Part is avaliable on this [link](https://github.com/AndresJejen/Backend-Document-Indexer-ML)
+
+## Resources
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +81,15 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+# Collaborators
+
+1. German Andres Jejen Cortes [GitHub AndresJejen](https://github.com/AndresJejen)
+-- here you can write your name.
+
+## My work
+Please Follow my work, i thing you can find awesome things there.
+
+**Twitter** [@andres_jejen](https://twitter.com/andres_jejen)
+
+**StartUp Page** [Beitlab](https://beitlab.com)
