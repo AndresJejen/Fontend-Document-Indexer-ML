@@ -6,36 +6,71 @@ import './auth.css';
 
 class AuthPage extends Component{
 
+
     constructor(props){
         super(props);
-        this.emailEL = React.createRef();
-        this.passwordEL = React.createRef();
-        this.nameEL = React.createRef();
-        this.levelEL = React.createRef();
+
+        this.state = {
+            isLogin: true,
+            message: '',
+            email: '',
+            password: '',
+            nombre: ''
+        }
+
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
+
+    handleInputChange(e){
+        const {value, name} = e.target;
+        this.setState({
+            [name]: value
+        });
+    }
+
 
     submitHandler = event =>{
         event.preventDefault();
-        const email = this.emailEL.current.value;
-        const password = this.passwordEL.current.value;
-        const name = this.nameEL.current.value;
-        const level = this.levelEL.current.value;
 
-        if(email.trim().length === 0 || password.trim().length === 0 || name.trim().length === 0 || level.trim().length === 0){
-            return;
+        let requestBody = {};
+
+        if(this.state.isLogin){
+
+            if(this.state.email === '' || this.state.password === ''){
+                this.setState({message:'Diligencie todos los campos'});
+                return;
+            }
+
+            requestBody = {
+                query: `
+                    query {
+                        login(email: "${this.state.email}", password: "${this.state.password}"){
+                            userId
+                            token
+                            tokenExpiration
+                        }
+                    } 
+                `
+            };
         }
+        else{
 
-        const requestBody = {
-            query: `
-                mutation {
-                    createUser(userInput: {email: "${email}", password: "${password}", name: "${name}", level: "${level}"}){
-                        _id
-                        email
-                        name
-                    }
-                } 
-            `
-        };
+            if(this.state.nombre === '' || this.state.email === '' || this.state.password === ''){
+                this.setState({message:'Diligencie todos los campos'});
+                return;
+            }
+
+            requestBody = {
+                query: `
+                    mutation {
+                        createUser(userInput: {email: "${this.state.email}", password: "${this.state.password}", name: "${this.state.nombre}"}){
+                            _id
+                            email
+                        }
+                    } 
+                `
+            };
+        }
 
         fetch('http://localhost:8000/api',{
             method: 'POST',
@@ -46,6 +81,7 @@ class AuthPage extends Component{
         })
         .then( res => {
             if(res.status !== 200 && res.status !== 201){
+                console.log(res);
                 throw new Error('Failed!');
             }
             return res.json()
@@ -54,45 +90,70 @@ class AuthPage extends Component{
             console.log(resData);
         })
         .catch(err => {
-            console.error("Ha ocurrido un error en ingresar" + err);
+            console.error("Ha ocurrido un error en Registrar" + err);
         });
     }
 
+    switchModeHandler = () => {
+        this.setState(
+            prevState =>{
+                return {
+                    isLogin: !prevState.isLogin,
+                    nombre :"",
+                    email: "",
+                    password: "",
+                    message: ''
+                }
+            }
+        );
+    }
+
+    
     render(){
-        return ( 
-        <form className="auth-form" onSubmit={this.submitHandler}>
-            
+
+        const Register = () => {return !this.state.isLogin ? 
             <div className="form-control">
                 <label htmlFor="name">
                     Nombre
                 </label>
-                <input type="text" id="Nombre" ref={this.nameEL}/>
+                <input type="text" id="Nombre" name='nombre' value={this.state.nombre} onChange={this.handleInputChange}/>
             </div>
+            :
+            <div></div>
+        }
+    
+        return ( 
+        <form className="auth-form" onSubmit={this.submitHandler}>
+
+            <header>
+                <h1>
+                    {!this.state.isLogin ? 'Registro':'Login'}
+                </h1>
+            </header>
+
+            <Register/>
             
             <div className="form-control">
                 <label htmlFor="email">
                     E-mail
                 </label>
-                <input type="email" id="email" ref={this.emailEL}/>
+                <input type="email" id="email" name='email' value={this.state.email} onChange={this.handleInputChange}/>
             </div>
 
             <div className="form-control">
                 <label htmlFor="password">
                     Contraseña
                 </label>
-                <input type="password" id="password" ref={this.passwordEL}/>
-            </div>
-            
-            <div className="form-control">
-                <label htmlFor="Level">
-                    Nivel de Seguridad
-                </label>
-                <input type="text" id="Level" ref={this.levelEL}/>
+                <input type="password" id="password" name='password' value={this.state.password} onChange={this.handleInputChange}/>
             </div>
 
+            <label className="message">
+                {this.state.message}        
+            </label>
+            
             <div className="form-actions">
-                <button type="button">Registrarme</button>
-                <button type="submit">Log In</button>
+                <button type="submit">{!this.state.isLogin ? 'Registrame':'Ingresar'}</button>
+                <button type="button" onClick = {this.switchModeHandler}>Ir a {this.state.isLogin ? 'Registro':'Login'}</button>
             </div>
         </form>
         );

@@ -18,9 +18,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <React.Fragment>
-          <MainNavigation>
-
-          </MainNavigation>
+          <MainNavigation/>
           <main className="main-content">
             <Switch>
                 <Redirect from= "/" to="auth" exact/>
