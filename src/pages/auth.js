@@ -4,8 +4,12 @@ import React, {Component} from 'react';
 //Estilos
 import './auth.css';
 
+//Contexto
+import AuthContext from '../context/auth-context';
+
 class AuthPage extends Component{
 
+    static contextType = AuthContext;
 
     constructor(props){
         super(props);
@@ -87,7 +91,15 @@ class AuthPage extends Component{
             return res.json()
         })
         .then(resData => {
-            console.log(resData);
+            if(this.state.isLogin){
+                if(resData.data.login.token){
+                    this.context.login(
+                        resData.data.login.token,
+                        resData.data.login.userId,
+                        resData.data.login.tokenExpiration
+                    );
+                }    
+            }
         })
         .catch(err => {
             console.error("Ha ocurrido un error en Registrar" + err);
@@ -111,16 +123,6 @@ class AuthPage extends Component{
     
     render(){
 
-        const Register = () => {return !this.state.isLogin ? 
-            <div className="form-control">
-                <label htmlFor="name">
-                    Nombre
-                </label>
-                <input type="text" id="Nombre" name='nombre' value={this.state.nombre} onChange={this.handleInputChange}/>
-            </div>
-            :
-            <div></div>
-        }
     
         return ( 
         <form className="auth-form" onSubmit={this.submitHandler}>
@@ -131,7 +133,14 @@ class AuthPage extends Component{
                 </h1>
             </header>
 
-            <Register/>
+            {!this.state.isLogin&&(
+                <div className="form-control">
+                    <label htmlFor="nombre">
+                        Nombre
+                    </label>
+                    <input type="text" id="nombre" name='nombre' value={this.state.nombre} onChange={this.handleInputChange}/>
+                </div>
+            )}
             
             <div className="form-control">
                 <label htmlFor="email">
