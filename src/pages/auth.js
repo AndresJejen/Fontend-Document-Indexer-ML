@@ -120,7 +120,6 @@ class AuthPage extends Component{
         );
     }
 
-    
     render(){
 
     

@@ -23,6 +23,7 @@ const MainNavigation = props => (
                         {!context.token && (<li> <NavLink to="/auth">Ingreso</NavLink> </li>)}
                         <li> <NavLink to="/documentos">Documentos</NavLink> </li>
                         <li> <NavLink to="/donaciones">Donaciones</NavLink> </li>
+                        {context.token && (<li> <button onClick={context.logout}>Log Out</button> </li>)}
                     </ul>
                 </nav>
             </header>

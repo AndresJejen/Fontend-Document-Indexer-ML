@@ -19,7 +19,7 @@
 }
 
 .main-navigation__item{
-    margin-left: 1.5rem;
+    margin-left: 1.5rem;    
 }
 
 
@@ -28,20 +28,33 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    justify-content: flex-end;
 }
 
-.main-navigation__item ul li{
+.main-navigation__item li{
     margin: 0 1rem;
 }
 
-.main-navigation__item ul li a{
+.main-navigation__item a,
+.main-navigation__item button{
     text-decoration: none;
-    color:white;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    font: inherit;
+    background: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
 }
 
-.main-navigation__item ul li a:hover,
-.main-navigation__item ul li a:active,
-.main-navigation__item ul li a.active{
-    color: #c6d445;
+.main-navigation__item a:hover,
+.main-navigation__item a:active,
+.main-navigation__item a.active,
+.main-navigation__item button:hover,
+.main-navigation__item button:active{
+    background: #ffffff;
+    color: #5101d1;
+    border-radius: 5px;
 }
 

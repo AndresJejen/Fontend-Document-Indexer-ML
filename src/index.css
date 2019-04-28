@@ -8,7 +8,41 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.form-control{
+  margin-bottom: 1rem;
+}
+
+.form-control label{
+  margin-bottom: 0.5rem;
+}
+
+.form-control label,
+.form-control input{
+  width: 100%;
+  display: block;
+}
+
+.form-actions{
+  display: flex;
+  justify-content: center;
+}
+
+.form-actions button,
+.btn{
+  background: rgb(113, 111, 224);
+  font: inherit;
+  border: 1px solid rgb(113, 111, 224);
+  border-radius: 5px;
+  padding: 0.25rem 1rem;
+  margin: 0 1rem;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.26);
+  color:white;
+  cursor: pointer;
+}
+
+.form-actions button:hover,
+.form-actions button:active,
+.btn:hover,
+.btn:active{
+  background: rgb(87, 86, 172);
 }
