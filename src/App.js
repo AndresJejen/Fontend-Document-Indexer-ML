@@ -16,6 +16,31 @@ import MainNavigation from './components/Navigations/MainNavigation';
 //Contexto
 import AuthContext from './context/auth-context';
 
+//Iconos del proyecto
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {  faSortAmountDown,
+          faSortAmountUp,
+          faCode,
+          faLink,
+          faFileSignature,
+          faKey,
+          faEnvelope,
+          faUserAlt,
+          faFileAlt,
+          faLanguage } from '@fortawesome/free-solid-svg-icons';  
+ 
+library.add(  faSortAmountDown,
+              faSortAmountUp,
+              faCode,
+              faLink,
+              faFileSignature,
+              faKey,
+              faEnvelope,
+              faUserAlt,
+              faFileAlt,
+              faLanguage
+            );
+
 class App extends Component {
 
   state = {

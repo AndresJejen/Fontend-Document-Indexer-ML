@@ -2,4 +2,26 @@
     width: 25rem;
     max-width: 80%;
     margin: 5rem auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-100%);
+}
+
+.auth-form h1{
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+.auth-form.innactive{
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%,50%);
+}
+  
+.auth-form.active{
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%,-100%);
 }

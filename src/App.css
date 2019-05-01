@@ -1,3 +1,7 @@
 .main-content{
-  margin: 4rem 2.5rem;
+  height: 100vh;
+  display: flex;
+  background-color: rgb(89,189,130);
+  transition: background 0.5s ease;
+  position: relative; 
 }

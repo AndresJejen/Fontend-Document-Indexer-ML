@@ -6,3 +6,29 @@
     width: 30rem;
     max-width: 80%;
 }
+
+.doc-form{
+    margin: 5rem auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-100%);
+}
+
+.doc-form h1{
+    text-align: center;
+    padding: 20px;
+    margin: 50px auto;
+}
+
+.doc-form.innactive{
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%,50%);
+}
+  
+.doc-form.active{
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%,-100%);
+}

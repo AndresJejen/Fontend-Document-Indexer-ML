@@ -7,6 +7,9 @@ import './auth.css';
 //Contexto
 import AuthContext from '../context/auth-context';
 
+//Componentes
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 class AuthPage extends Component{
 
     static contextType = AuthContext;
@@ -124,7 +127,7 @@ class AuthPage extends Component{
 
     
         return ( 
-        <form className="auth-form" onSubmit={this.submitHandler}>
+        <form className="auth-form active" onSubmit={this.submitHandler} innactive>
 
             <header>
                 <h1>
@@ -134,25 +137,19 @@ class AuthPage extends Component{
 
             {!this.state.isLogin&&(
                 <div className="form-control">
-                    <label htmlFor="nombre">
-                        Nombre
-                    </label>
-                    <input type="text" id="nombre" name='nombre' value={this.state.nombre} onChange={this.handleInputChange}/>
+                    <div className="icon"><FontAwesomeIcon icon="user-alt" /></div>
+                    <input type="text" id="nombre" name='nombre' value={this.state.nombre} onChange={this.handleInputChange} placeholder="Nombre" required/>
                 </div>
             )}
             
             <div className="form-control">
-                <label htmlFor="email">
-                    E-mail
-                </label>
-                <input type="email" id="email" name='email' value={this.state.email} onChange={this.handleInputChange}/>
+                <div className="icon"><FontAwesomeIcon icon="envelope" /></div>
+                <input type="email" id="email" name='email' value={this.state.email} onChange={this.handleInputChange} placeholder="E-mail" required/>
             </div>
 
             <div className="form-control">
-                <label htmlFor="password">
-                    Contraseña
-                </label>
-                <input type="password" id="password" name='password' value={this.state.password} onChange={this.handleInputChange}/>
+                <div className="icon"><FontAwesomeIcon icon="key" /></div>
+                <input type="password" id="password" name='password' value={this.state.password} onChange={this.handleInputChange} required placeholder="Contraseña"/>
             </div>
 
             <label className="message">

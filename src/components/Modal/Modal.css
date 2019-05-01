@@ -8,7 +8,13 @@
 }
 
 .modal__content{
+    height: 40vh;
     padding: 1rem;
+    display: flex;
+    background-color: rgb(89,189,130);
+    transition: background 0.5s ease;
+    justify-content: center;
+    position: relative; 
 }
 
 .modal__actions{
